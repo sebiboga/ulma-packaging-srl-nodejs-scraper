@@ -317,6 +317,8 @@ async function main() {
   const testOnlyOnePage = process.argv.includes("--test");
   
   try {
+    // Ensure tmp/ directory exists (for jobs.json and company.json backups)
+    fs.mkdirSync("tmp", { recursive: true });
     // Step 1: Get count of existing jobs in Solr for comparison
     console.log("=== Step 1: Get existing jobs count ===");
     const existingResult = await querySOLR(COMPANY_CIF);

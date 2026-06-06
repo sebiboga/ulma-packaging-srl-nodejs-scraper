@@ -172,6 +172,7 @@ function saveCompanyData(anafData, peviitorData) {
   };
   
   // Save to file for future use
+  fs.mkdirSync("tmp", { recursive: true });
   fs.writeFileSync("tmp/company.json", JSON.stringify(companyData, null, 2), "utf-8");
   console.log("\n✅ Saved company data to tmp/company.json");
   console.log("This file can be used to restore company details if SOLR data is lost.\n");

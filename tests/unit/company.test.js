@@ -63,6 +63,7 @@ describe('company.js', () => {
 
   beforeAll(async () => {
     process.env.SOLR_AUTH = 'test:test';
+    fs.mkdirSync("tmp", { recursive: true });
     savedCompanyJson = backupCompanyJson();
     company = await import('../../company.js');
   });

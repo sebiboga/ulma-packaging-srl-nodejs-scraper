@@ -21,7 +21,11 @@ import fetch from "node-fetch";
 import fs from "fs";
 import { loadEnvFile } from "node:process";
 
-loadEnvFile(".env.local");
+try {
+  loadEnvFile(".env.local");
+} catch {
+  // .env.local may not exist in CI — SOLR_AUTH comes from GitHub Secrets
+}
 
 // ============================================================================
 // CONFIGURATION
