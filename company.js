@@ -65,11 +65,15 @@ const COMPANY_MODEL_FIELDS = [
 async function getCompanyFromPeviitor(companyName) {
   const url = `${Peviitor_API_URL}?name=${encodeURIComponent(companyName)}`;
   const res = await fetch(url, {
-    headers: { "User-Agent": "job_seeker_ro_spider" }
+    headers: {
+      origin: "https://peviitor.ro",
+      referer: "https://peviitor.ro/",
+      "User-Agent": "job_seeker_ro_spider"
+    }
   });
   
-  if (!res || !res.ok) {
-    throw new Error(`Peviitor API error: ${res?.status || 'no response'}`);
+  if (!res.ok) {
+    throw new Error(`Peviitor API error: ${res.status}`);
   }
   
   const data = await res.json();
