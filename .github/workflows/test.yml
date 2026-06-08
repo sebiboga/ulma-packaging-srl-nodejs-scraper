@@ -89,7 +89,7 @@ jobs:
 
   Automation-Tests:
     runs-on: ubuntu-latest
-    needs: ensure-company-core
+    needs: [ensure-company-core, validate-jobs]
     
     steps:
       - uses: actions/checkout@v5
