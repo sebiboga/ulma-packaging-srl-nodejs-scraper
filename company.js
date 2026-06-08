@@ -68,8 +68,8 @@ async function getCompanyFromPeviitor(companyName) {
     headers: { "User-Agent": "job_seeker_ro_spider" }
   });
   
-  if (!res.ok) {
-    throw new Error(`Peviitor API error: ${res.status}`);
+  if (!res || !res.ok) {
+    throw new Error(`Peviitor API error: ${res?.status || 'no response'}`);
   }
   
   const data = await res.json();
