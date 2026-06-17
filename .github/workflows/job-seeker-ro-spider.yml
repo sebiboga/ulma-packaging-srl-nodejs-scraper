@@ -57,6 +57,14 @@ jobs:
         env:
           SOLR_AUTH: ${{ secrets.SOLR_AUTH }}
 
+      - name: Consistency Tests
+        run: |
+          npm run test:consistency
+          cp test-report.html docs/test-results/post-scrape-consistency.html || true
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload test artifacts
         if: always()
         uses: actions/upload-artifact@v7
